@@ -1,0 +1,16 @@
+{% extends "mars/base.html" %}
+{% block content %}
+<article class="media content-section">
+    <div class="media-body">
+        <div class="article-metadata">
+            <small class="text-muted">{{ post.date_posted|date:"F d, Y" }}</small>
+            <small class="text-muted">by {{ post.author }}</small>
+        </div>
+        <h2 class="article-title">{{ post.title }}</h2>
+        <p class="article-content">{{ post.content }}</p>
+        <div class="mt-4">
+            <a href="{% url 'MARS NEWS' %}" class="btn btn-outline-secondary">Back to News</a>
+        </div>
+    </div>
+</article>
+{% endblock content %}

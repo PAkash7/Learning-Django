@@ -1,0 +1,48 @@
+{% extends "mars/base.html" %}
+{% block content %}
+<div class="row">
+    <div class="col-md-12">
+        <h1 class="mb-4">Mission Control Dashboard</h1>
+    </div>
+</div>
+
+<div class="row">
+    <!-- Left Column: Mars Status -->
+    <div class="col-md-6">
+        <h3 class="status-header">Current Mars Status</h3>
+        {% for status in data %}
+        <div class="card bg-dark text-white mb-3">
+            <div class="card-header border-danger">
+                Status Update: {{ status.timestamp|date:"M d, Y H:i" }}
+            </div>
+            <div class="card-body">
+                <p class="card-text"><strong class="text-danger">Human Presence:</strong> {{ status.human_status }}</p>
+                <p class="card-text"><strong class="text-info">Water Levels:</strong> {{ status.water_status }}</p>
+                <p class="card-text"><strong class="text-warning">Temperature:</strong> {{ status.temperature }}</p>
+                <p class="card-text"><strong class="text-success">Moisture:</strong> {{ status.moisture_status }}</p>
+            </div>
+        </div>
+        {% empty %}
+        <p>No status data available.</p>
+        {% endfor %}
+    </div>
+
+    <!-- Right Column: Latest Discoveries -->
+    <div class="col-md-6">
+        <h3 class="discovery-header">Recent Discoveries</h3>
+        {% for post in discoveries %}
+        <article class="media content-section discovery-card">
+            <div class="media-body">
+                <div class="article-metadata">
+                    <small class="text-muted">{{ post.date_posted|date:"F d, Y" }}</small>
+                </div>
+                <h4><a class="article-title" href="#">{{ post.title }}</a></h4>
+                <p class="article-content">{{ post.content|truncatewords:30 }}</p>
+            </div>
+        </article>
+        {% empty %}
+        <p>No discoveries reported yet.</p>
+        {% endfor %}
+    </div>
+</div>
+{% endblock content %}

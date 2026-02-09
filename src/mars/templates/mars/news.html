@@ -1,0 +1,16 @@
+{% extends "mars/base.html" %}
+{% block content %}
+<h1>{% if filter_title %}{{ filter_title }}{% else %}Latest Martian Discoveries{% endif %}</h1>
+{% for post in discoveries %}
+<article class="media content-section">
+    <div class="media-body">
+        <div class="article-metadata">
+            <small class="text-muted">{{ post.date_posted|date:"F d, Y" }}</small>
+            <small class="text-muted">by {{ post.author }}</small>
+        </div>
+        <h2><a class="article-title" href="#">{{ post.title }}</a></h2>
+        <p class="article-content">{{ post.content }}</p>
+    </div>
+</article>
+{% endfor %}
+{% endblock content %}
